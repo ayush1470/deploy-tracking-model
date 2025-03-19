@@ -1,3 +1,4 @@
+import os
 from flask import Flask, request, jsonify
 import mysql.connector
 import numpy as np
@@ -8,13 +9,13 @@ from flask_cors import CORS
 app = Flask(__name__)
 CORS(app)  # Enable CORS for all routes
 
-# Connect to MySQL
+# Connect to MySQL using environment variables
 def get_gps_data():
     conn = mysql.connector.connect(
-        host="localhost",
-        user="root",
-        password="abcd1234",
-        database="women_safety"
+        host=os.getenv("DB_HOST", "localhost"),
+        user=os.getenv("DB_USER", "root"),
+        password=os.getenv("DB_PASSWORD", "abcd1234"),
+        database=os.getenv("DB_NAME", "women_safety")
     )
     cursor = conn.cursor()
     cursor.execute("SELECT latitude, longitude FROM gps_data")
@@ -60,3 +61,4 @@ def check_deviation():
 
 if __name__ == '__main__':
     app.run(debug=True)  # Run locally
+
