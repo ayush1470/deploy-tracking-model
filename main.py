@@ -10,10 +10,12 @@ from urllib.parse import urlparse
 app = Flask(__name__)
 CORS(app)
 
+
 # Use the correct PostgreSQL URL format
 POSTGRES_URL = os.getenv("POSTGRES_URL")
 if not POSTGRES_URL:
     raise ValueError("POSTGRES_URL is not set. Please add it to environment variables.")
+
 
 # Parse URL
 parsed_url = urlparse(POSTGRES_URL)
@@ -24,6 +26,7 @@ DB_NAME = parsed_url.path.lstrip("/")
 DB_PORT = parsed_url.port
 
 # Function to fetch GPS data
+
 def get_gps_data():
     conn = psycopg2.connect(
         host=DB_HOST,
