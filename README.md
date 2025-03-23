@@ -123,5 +123,4 @@ curl -X POST http://localhost:5000/check-deviation \
 
 **Best Practice:** Store your credentials in a `.env` file or system environment variables instead of hardcoding them.
 
-## Contributing
-Contributions are welcome! If you’d like to improve this project, feel free to fork the repo and submit a pull request.
+
